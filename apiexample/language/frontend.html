@@ -1,0 +1,26 @@
+<html>
+    <title>
+        <head>example fronted</head>
+    </title>
+    <body>
+        <h1>HELLO WORLD THIS ARE YOUR LANGUAGES</h1>
+        <div id = "language_container" style="text-align: center;">
+             
+        </div>
+    </body>
+    <script>
+        let languagesContainer = document.getElementById('language_container')
+        let getLanguages = async () => {
+            let response = await fetch('http://127.0.0.1:8000/languages/')
+            let languages = await response.json()
+            for (let i = 0; languages.length > i; i++){
+                let language = languages[i]
+                let row = `<div>
+                    <h3>${language.name}</h3>
+                    </div>`
+                languagesContainer.innerHTML += row
+            }
+        }
+        getLanguages()
+    </script>
+</html> 
